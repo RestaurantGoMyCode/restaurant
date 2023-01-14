@@ -18,12 +18,13 @@ const {routerDeleteProduct}=require('./Router/RouterDelete/routerDeleteProduct')
 // require routerUpdate
 const {routerUpdateReserv}=require('./Router/RouterUpadate/routerUpadateReserv')
 const {routerUpdateProduct}=require('./Router/RouterUpadate/routerUpdateProduct')
-
+ const {smsraouter}=require('./Router/smsRouter')
+ const {routerMail}=require('./Router/mail')
 
 
 app.use(
     cors({
-        origin:'http://localhost:3000',
+        origin:'http://192.168.2.163:19000',
         credentials:false,
         optionsSuccessStatus:200
     })
@@ -31,10 +32,12 @@ app.use(
 
 
 app.use(express.json())
-
-// routerPost
+app.use('/',smsraouter)
+app.use('/',routerMail)
+// routerPost  
 app.use('/',routerGetReserv)
 app.use('/',routerPostProduct)
+
 
 // routerGet
 app.use('/',routerPostReserv)
